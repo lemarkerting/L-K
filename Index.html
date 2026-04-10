@@ -1,204 +1,76 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>L&T WE SELL</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">  <style>
-    * {margin:0; padding:0; box-sizing:border-box;}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L&K Luxury</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet"><style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:black;color:white;overflow-x:hidden;}
 
-    body {
-      font-family: 'Inter', sans-serif;
-      color: white;
-      overflow-x: hidden;
-    }
+/* NAV */
+nav{padding:20px 40px;display:flex;justify-content:space-between;}
+nav h1{font-family:'Playfair Display';letter-spacing:3px;}
 
-    /* Background Video */
-    .video-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-      filter: brightness(0.4);
-      animation: slowZoom 20s ease-in-out infinite alternate;
-    }
+/* HERO */
+.hero{height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.hero h2{font-family:'Playfair Display';font-size:50px;}
+.btn{margin-top:20px;padding:12px 30px;border:1px solid white;background:none;color:white;cursor:pointer;}
 
-    @keyframes slowZoom {
-      0% {
-        transform: scale(1);
-      }
-      100% {
-        transform: scale(1.15);
-      }
-    }
+/* SCROLL SECTION */
+.scroll-wrapper{overflow:hidden;white-space:nowrap;margin:40px 0;}
+.scroll-track{display:inline-flex;animation:scroll 20s linear infinite;}
 
-    /* Overlay */
-    .overlay {
-      position: fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.9));
-      z-index:-1;
-    }
+.card{width:180px;height:250px;margin:10px;background:#111;border-radius:15px;overflow:hidden;cursor:pointer;}
+.card img{width:100%;height:100%;object-fit:cover;}
 
-    /* Navbar */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 25px 60px;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      background: rgba(0,0,0,0.2);
-      backdrop-filter: blur(12px);
-    }
+@keyframes scroll{
+  from{transform:translateX(0);} 
+  to{transform:translateX(-50%);} 
+}
 
-    nav h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      letter-spacing: 3px;
-      position: relative;
-      display: inline-block;
-    }
+/* FLOAT WHATSAPP */
+.whatsapp{
+position:fixed;
+bottom:20px;right:20px;
+background:#25D366;
+padding:15px;border-radius:50%;cursor:pointer;
+}
 
-    /* Custom L&T Logo Style */
-    nav h1::after {
-      content: "";
-      position: absolute;
-      right: -25px;
-      top: 5px;
-      width: 20px;
-      height: 30px;
-      background: linear-gradient(135deg, #d9d9d9, #ffffff);
-      border-radius: 10px 10px 20px 20px;
-      transform: rotate(15deg);
-      opacity: 0.9;
-    }
+</style></head><body><nav>
+<h1>L&K</h1>
+</nav><section class="hero">
+<h2>Luxury Collection</h2>
+<button class="btn">Explore</button>
+</section><!-- DRESSES --><div class="scroll-wrapper">
+<div class="scroll-track"><div class="card" onclick="order('Dress','R500','S,M,L','Red/Black')">
+<img src="https://images.unsplash.com/photo-1520962918287-7448c2878f65">
+</div><div class="card" onclick="order('Dress','R600','S,M,L','White')">
+<img src="https://images.unsplash.com/photo-1495121605193-b116b5b09a0e">
+</div><!-- duplicate for infinite effect --><div class="card" onclick="order('Dress','R500','S,M,L','Red/Black')">
+<img src="https://images.unsplash.com/photo-1520962918287-7448c2878f65">
+</div><div class="card" onclick="order('Dress','R600','S,M,L','White')">
+<img src="https://images.unsplash.com/photo-1495121605193-b116b5b09a0e">
+</div></div>
+</div><!-- SNEAKERS --><div class="scroll-wrapper">
+<div class="scroll-track"><div class="card" onclick="order('Sneakers','R900','6-10','White/Black')">
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
+</div><div class="card" onclick="order('Sneakers','R950','6-10','Grey')">
+<img src="https://images.unsplash.com/photo-1600180758890-6b94519a8ba6">
+</div><div class="card" onclick="order('Sneakers','R900','6-10','White/Black')">
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
+</div><div class="card" onclick="order('Sneakers','R950','6-10','Grey')">
+<img src="https://images.unsplash.com/photo-1600180758890-6b94519a8ba6">
+</div></div>
+</div><!-- WHATSAPP --><div class="whatsapp" onclick="quickChat()">💬</div><script>
+const phone = "27XXXXXXXXX";
 
-    nav ul {
-      display: flex;
-      gap: 35px;
-      list-style: none;
-      font-size: 14px;
-      letter-spacing: 1px;
-    }
+function order(product, price, sizes, colors){
+const msg = `Hi, I want to order:\n\nProduct: ${product}\nPrice: ${price}\nSizes: ${sizes}\nColors: ${colors}\n\nMy Size:\nMy Address:`;
+window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
+}
 
-    nav ul li {
-      cursor: pointer;
-      opacity: 0.8;
-      transition: 0.3s;
-    }
-
-    nav ul li:hover {
-      opacity: 1;
-    }
-
-    /* Hero */
-    .hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .hero h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 64px;
-      font-weight: 400;
-      letter-spacing: 2px;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      font-size: 16px;
-      letter-spacing: 2px;
-      opacity: 0.8;
-      margin-bottom: 30px;
-    }
-
-    .btn {
-      padding: 14px 35px;
-      border: 1px solid white;
-      background: transparent;
-      color: white;
-      letter-spacing: 2px;
-      cursor: pointer;
-      transition: 0.4s;
-    }
-
-    .btn:hover {
-      background: white;
-      color: black;
-    }
-
-    /* Scroll Indicator */
-    .scroll {
-      position: absolute;
-      bottom: 30px;
-      font-size: 12px;
-      letter-spacing: 2px;
-      opacity: 0.7;
-      animation: fade 2s infinite;
-    }
-
-    @keyframes fade {
-      0%,100% {opacity:0.3}
-      50% {opacity:1}
-    }
-
-    /* Section Divider */
-    .section {
-      height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background: black;
-      color: white;
-    }
-
-    .section h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 40px;
-      font-weight: 400;
-      letter-spacing: 2px;
-    }
-
-    footer {
-      padding: 30px;
-      text-align: center;
-      background: black;
-      font-size: 12px;
-      letter-spacing: 1px;
-      opacity: 0.6;
-    }
-
-  </style></head><body>  <!-- Background Video -->  <video autoplay muted loop class="video-bg">
-    <source src="https://cdn.coverr.co/videos/coverr-woman-walking-in-heels-5171/1080p.mp4" type="video/mp4">
-  </video>  <div class="overlay"></div>  <!-- Navbar -->  <nav>
-    <h1>L&T</h1>
-    <ul>
-      <li>HOME</li>
-      <li>COLLECTION</li>
-      <li>ABOUT</li>
-      <li>CONTACT</li>
-    </ul>
-  </nav>  <!-- Hero Section -->  <section class="hero">
-    <h2>L&T Luxury</h2>
-    <p>DRESSES • COLOGNE • SNEAKERS • HOME</p>
-    <button class="btn">ENTER STORE</button>
-    <div class="scroll">SCROLL</div>
-  </section>  <!-- Brand Statement Section -->  <section class="section">
-    <h3>Crafted for Elegance. Designed for Presence.</h3>
-  </section>  <footer>
-    <p>© 2026 L&T WE SELL</p>
-  </footer></body>
+function quickChat(){
+window.open(`https://wa.me/${phone}?text=Hi, I'm interested in your products`);
+}
+</script></body>
 </html>
